@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Docker Monitor v1.1"
+
 echo "===== Check started: $(date '+%Y-%m-%d %H:%M:%S') ====="
 
 CONTAINER="my-docker-app-web-1"
