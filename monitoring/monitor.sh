@@ -24,5 +24,3 @@ else
     echo "ERROR: Website is not working"
     exit 1
 fi
-
-if true; then
