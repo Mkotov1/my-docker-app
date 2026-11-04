@@ -1,0 +1,15 @@
+name: Bash Syntax Check
+
+on:
+  push:
+
+jobs:
+  check-bash:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v4
+
+      - name: Check Bash syntax
+        run: bash -n monitoring/monitor.sh
