@@ -2,6 +2,7 @@ name: Bash Syntax Check
 
 on:
   push:
+  pull_request:
 
 jobs:
   check-bash:
@@ -12,4 +13,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check Bash syntax
-        run: bash -n monitoring/monitor.sh
+        run: |
+          bash -n monitoring/monitor.sh
+          bash -n deploy-monitor.sh
