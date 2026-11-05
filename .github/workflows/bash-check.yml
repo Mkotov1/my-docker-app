@@ -58,5 +58,11 @@ jobs:
       - name: Publish Docker image
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          docker tag my-docker-app:ci ghcr.io/mkotov1/my-docker-app:main
-          docker push ghcr.io/mkotov1/my-docker-app:main
+          IMAGE="ghcr.io/mkotov1/my-docker-app"
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+
+          docker tag my-docker-app:ci "$IMAGE:main"
+          docker tag my-docker-app:ci "$IMAGE:sha-$SHORT_SHA"
+
+          docker push "$IMAGE:main"
+          docker push "$IMAGE:sha-$SHORT_SHA"
