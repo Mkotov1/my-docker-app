@@ -34,3 +34,11 @@ jobs:
         run: |
           curl -fsS --retry 10 --retry-connrefused --retry-delay 1 http://localhost:8084/ -o /tmp/response.html
           grep -q "My first DevOps project" /tmp/response.html
+
+      - name: Show Docker logs on failure
+        if: failure()
+        run: |
+          echo "=== Docker containers ==="
+          docker ps -a
+          echo "=== Container logs ==="
+          docker logs ci-web || true
