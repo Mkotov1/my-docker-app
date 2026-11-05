@@ -1,4 +1,4 @@
-name: Bash Syntax Check
+name: Bash and Docker CI
 
 on:
   push:
@@ -16,3 +16,13 @@ jobs:
         run: |
           bash -n monitoring/monitor.sh
           bash -n deploy-monitor.sh
+
+  docker-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t my-docker-app:ci .
