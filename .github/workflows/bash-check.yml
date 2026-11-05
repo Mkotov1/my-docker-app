@@ -31,4 +31,6 @@ jobs:
         run: docker run -d --name ci-web -p 8084:80 my-docker-app:ci
 
       - name: Check HTTP response
-        run: curl -fsS --retry 10 --retry-connrefused --retry-delay 1 http://localhost:8084/
+        run: |
+          curl -fsS --retry 10 --retry-connrefused --retry-delay 1 http://localhost:8084/ -o /tmp/response.html
+          grep -q "My first DevOps project" /tmp/response.html
